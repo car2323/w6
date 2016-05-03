@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   resources :ingredients#, only:[:create, :destroy, :show]
   post 'sandwiches/:id/ingredients/add' => 'sandwiches#add_ingredient'
   resources(:sandwiches, except: [:new, :edit])
+  scope "/api" do
+    resources :sandwiches
+    resources :ingredients
+    post "/sandwiches/:id/ingredients/add" => "sandwiches#add_ingredient"
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

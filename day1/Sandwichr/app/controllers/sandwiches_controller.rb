@@ -21,14 +21,14 @@ class SandwichesController < ApplicationController
     end
     def add_ingredient
     	sandwich = Sandwich.find_by(id: params[:id])
-    	sandwich_ingredient = Ingredient.find_by(id: params[:ingredient_id]) #preguntar manana
-    	sandwich.ingredients.push(sandwich_ingredient)
-    	if sandwich.nil? || sandwich_ingredient.nil? 	
+    	ingredient = Ingredient.find_by(id: params[:ingredient_id])
+    	sandwich.ingredients.push(ingredient)
+    	if sandwich.nil? || ingredient.nil? 	
     	   render json: {error: "sandwich or ingredient not found"}, status: 404
     	   #render
     	   return #el return es como un break aqui en este caso
         end
-        render json: { sandwich: sandwich, ingredients: sandwich_ingredient }
+        render json: { sandwich: sandwich, ingredients: ingredient }
     end
     def update
     	sandwich = Sandwich.find_by(id: params[:id])

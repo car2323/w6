@@ -1,4 +1,4 @@
 class Ingredient < ActiveRecord::Base
-	has_many :sandwiches
-	has_many :ingredients, through: :sandwiches
+    has_many :sandwich_ingredients
+	has_many :sandwiches, through: :sandwich_ingredients
 end

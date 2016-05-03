@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-
+    before_action :autorize_user, only: [:show]
+    before_action :admin_only, only: [:index]
   # renders the home page
 def home
-  @name = current_user ? @current_user.username : "Ironhacker"
+  if current_user.nil?
+     @name = "Ironhacker"
+  else
+    @name = current_user.username
+  end
 end
 
   def index
@@ -29,7 +34,9 @@ end
   private
 
   def user_params
-     params.require(:user).permit(:username, :email)
+     params.require(:user).permit(
+      :username, :email,
+      :password, :password_confirmation)
   end
 
 end
