@@ -1,0 +1,28 @@
+<h3 class="js-sandwich-update" data-hook="<%= @sandwich.id %>">
+    <%= @sandwich.name %>
+</h3>
+<ul>
+    <li>Bread Type: <%= @sandwich.bread_type %></li>
+    <li class="js-sandwich-calories">
+        Total Calories: <%= @sandwich.total_calories %>
+    </li>
+    <li>
+        Ingredients:
+        <ul class="js-ingredient-list">
+            <% @ingredients.each do |ingredient| %>
+                <li><%= ingredient.name %></li>
+            <% end %>
+        </ul>
+    </li>
+</ul>
+<h4>Add Ingredients: </h4>
+<ul>
+    <% @possible_ingredients.each do |ingredient| %>
+        <li>
+            <button class="js-ingredient-btn" data-hook="<%= ingredient.id %>">
+                <%= ingredient.name + ", calories: " + ingredient.calories.to_s %>
+            </button>
+        </li>
+    <% end %>
+</ul>
+<a href="/sandwiches">Back To Sandwich List</a>
